@@ -20,7 +20,6 @@ from . import Synapse, synapse_tree
 
 def synapse_tree_cli(args):
     """create synapse tree cli"""
-    syn = Synapse().client()
     # get the list of folders 
     folderIDs = synapse_tree.get_data_folderIDs(args.folderID)
     #create a temporary directory under the current working directory
@@ -71,7 +70,6 @@ def main():
     parser = build_parser()
     args = parser.parse_args()
     args.func(args)
-
 
 if __name__ == "__main__":
     main()
