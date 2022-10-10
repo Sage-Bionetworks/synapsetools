@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+synapsetools/__init__.py
+synapsetools/__main__.py
+synapsetools/get_folder_tree_ar.py
+synapsetools.egg-info/PKG-INFO
+synapsetools.egg-info/SOURCES.txt
+synapsetools.egg-info/dependency_links.txt
+synapsetools.egg-info/entry_points.txt
+synapsetools.egg-info/not-zip-safe
+synapsetools.egg-info/requires.txt
+synapsetools.egg-info/top_level.txt
