@@ -10,7 +10,7 @@ from synapseclient.core.exceptions import (SynapseAuthenticationError,
                                            SynapseNoCredentialsError)
 from synapseutils import walk
 
-from . import Synapse
+from . import utils
 
 
 def get_data_folderIDs(folderID) -> list:
@@ -18,7 +18,7 @@ def get_data_folderIDs(folderID) -> list:
     Returns:
         list: SynapseIDs for the target folder
     """
-    syn = Synapse().client()
+    syn = utils.Synapse().client()
     # get study folders
     folders = list(syn.getChildren(folderID, includeTypes=["folder"]))
     synIDs = [f["id"] for f in folders]
@@ -72,7 +72,7 @@ def get_accessRequirementIds(folderID: str) -> list:
     Returns:
         list: clickWrap_AR and controlled_AR
     """
-    syn = Synapse().client()
+    syn = utils.Synapse().client()
     # TODO: explore why this API called twice for each entity
     all_ar = syn.restGET(uri=f"/entity/{folderID}/accessRequirement")["results"]
     if all_ar:
@@ -92,7 +92,7 @@ def get_AR_folders(out_dir, folderID) -> pd.DataFrame:
 
     Returns: pd.DataFrame: a dataframe contains data folder name, Synapse ID, clickWrap_AR and controlled_AR
     """
-    syn = Synapse().client()
+    syn = utils.Synapse().client()
     folders = pd.DataFrame()
     walkedPath = walk(syn, folderID, ["folder"])
     temp_dir = tempfile.mkdtemp(dir=out_dir)
@@ -113,8 +113,8 @@ def get_AR_folders(out_dir, folderID) -> pd.DataFrame:
     return folders
 
 def generate_folder_tree(out_dir, filename, output_folderID):
-    syn = Synapse().client()
-    file = open(f"{filename}.txt", "w")
+    syn = utils.Synapse().client()
+    file = open(filename, "w")
     subprocess.run(["tree", "-d", out_dir], stdout=file)
     table_out = syn.store(
         File(
@@ -122,6 +122,6 @@ def generate_folder_tree(out_dir, filename, output_folderID):
             parent=output_folderID,
         )
     )
-    os.remove(f"{filename}.txt")
+    os.remove(filename)
 
 

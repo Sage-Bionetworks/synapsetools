@@ -11,6 +11,7 @@ def syn_connection(monkeypatch):
 adapted from challengeutils https://github.com/Sage-Bionetworks/challengeutils/pull/121/files to manage Synapse connection
 """
 import logging
+import os
 
 import synapseclient
 from synapseclient.core.exceptions import SynapseAuthenticationError

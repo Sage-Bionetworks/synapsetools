@@ -15,7 +15,7 @@ from synapseclient.core.exceptions import (SynapseAuthenticationError,
                                            SynapseNoCredentialsError)
 from synapseutils import walk
 
-from . import Synapse, synapse_tree
+from . import synapse_tree, utils
 
 
 def synapse_tree_cli(args):
