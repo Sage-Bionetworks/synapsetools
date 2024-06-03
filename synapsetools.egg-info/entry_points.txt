@@ -1,0 +1,2 @@
+[console_scripts]
+synapsetools = synapsetools.__main__:main
